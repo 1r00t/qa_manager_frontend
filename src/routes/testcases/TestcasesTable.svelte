@@ -40,7 +40,7 @@
 </script>
 
 {#if filtered?.length}
-	<div class="h-[65vh] overflow-y-auto overscroll-contain pl-4" in:fade>
+	<div class="h-[65vh] flex-1 overflow-y-auto overscroll-contain pl-4" in:fade>
 		<table class="w-full table-fixed">
 			<thead class="">
 				<tr class="text-left">

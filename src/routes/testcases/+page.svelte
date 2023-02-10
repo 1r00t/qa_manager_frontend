@@ -6,7 +6,7 @@
 
 	import SectionsTree from './SectionsTree.svelte';
 	import TestcasesTable from './TestcasesTable.svelte';
-	import { currentSection } from '$lib/stores';
+	import { currentSection, checkedTestcases } from '$lib/stores';
 
 	export let data: PageServerData;
 
@@ -15,6 +15,8 @@
 	let testcases: TestCasesResponse = { items: [], count: 0 };
 
 	let loadingTestcases = false;
+
+	$: numSelectedTestcases = $checkedTestcases.size;
 
 	async function sectionClick(e: CustomEvent) {
 		loadingTestcases = true;
@@ -31,7 +33,19 @@
 	<h3 class="text-2xl font-semibold">All testcases</h3>
 </section>
 
-<section class="mt-16">
+<section class="mt-16 flex h-10 w-full items-center">
+	{#if numSelectedTestcases}
+		<div class="w-full text-center">
+			<a
+				href="/testcases/selected"
+				class="rounded-full bg-slate-600 px-2 py-1 text-xs text-slate-50"
+				><strong>{numSelectedTestcases}</strong> selected</a
+			>
+		</div>
+	{/if}
+</section>
+
+<section class="mt-6">
 	<div class="flex">
 		<SectionsTree {sections} on:sectionClick={sectionClick} />
 		{#if loadingTestcases}
