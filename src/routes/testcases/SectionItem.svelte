@@ -13,6 +13,7 @@
 {#if section.children.length > 0}
 	<div class="flex items-center gap-2">
 		<button
+			aria-label="toggle folder expansion"
 			on:click={() => {
 				isExpanded = !isExpanded;
 			}}

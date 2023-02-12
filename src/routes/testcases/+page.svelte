@@ -29,6 +29,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>QAManager testcases</title>
+	<meta name="description" content="List, edit and select testscases" />
+</svelte:head>
+
 <section class="mt-16">
 	<h3 class="text-2xl font-semibold">All testcases</h3>
 </section>

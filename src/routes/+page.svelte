@@ -6,7 +6,8 @@
 </script>
 
 <svelte:head>
-	<title>QA</title>
+	<title>QAManager home</title>
+	<meta name="description" content="Manage you QA test runs!" />
 </svelte:head>
 
 <section>

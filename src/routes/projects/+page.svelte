@@ -11,6 +11,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>QAManager projects</title>
+	<meta name="description" content="Show/Edit/Create projects" />
+</svelte:head>
+
 <section class="mt-16">
 	<h3 class="text-2xl font-semibold">All projects</h3>
 </section>
