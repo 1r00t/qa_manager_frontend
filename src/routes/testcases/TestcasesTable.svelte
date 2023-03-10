@@ -6,7 +6,7 @@
 
 	export let testcases: TestCasesResponse;
 
-	$: filtered = testcases.items?.map((testcase) => testcase);
+	$: filtered = testcases?.items?.map((testcase) => testcase);
 	$: selectAll = filtered?.every((t) => $checkedTestcases.has(t.id));
 	$: selectedAnyNotAll = filtered?.some((t) => $checkedTestcases.has(t.id)) && !selectAll;
 
@@ -35,8 +35,6 @@
 			$checkedTestcases = $checkedTestcases;
 		}
 	}
-
-	$: console.log($checkedTestcases);
 </script>
 
 {#if filtered?.length}
@@ -51,7 +49,7 @@
 							on:change={toggleSelectAll}
 							checked={selectAll}
 							indeterminate={selectedAnyNotAll}
-							class="text-blue-400 checked:ring-blue-400 focus:ring-blue-400"
+							class="cursor-pointer text-blue-400 checked:ring-blue-400 focus:ring-blue-400"
 						/>
 					</th>
 					<th class="w-16 py-2">ID</th>
@@ -60,7 +58,7 @@
 			</thead>
 			<tbody>
 				{#each filtered as item (item.id)}
-					<tr>
+					<tr class="cursor-default hover:bg-gray-50">
 						<td class="py-2"
 							><input
 								type="checkbox"
@@ -68,7 +66,7 @@
 								value={item.id}
 								checked={$checkedTestcases.has(item.id)}
 								on:change={() => toggleChecked(item.id)}
-								class="text-blue-400 checked:ring-blue-400 focus:ring-blue-400"
+								class="cursor-pointer text-blue-400 checked:ring-blue-400 focus:ring-blue-400"
 							/></td
 						>
 						<td class="py-2">{item.case_id}</td>

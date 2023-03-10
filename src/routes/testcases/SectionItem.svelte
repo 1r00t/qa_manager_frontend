@@ -4,20 +4,26 @@
 	import { IconChevronRight } from '@tabler/icons-svelte';
 	import SectionName from './SectionName.svelte';
 	import { slide } from 'svelte/transition';
+	import { expandedSections } from '$lib/stores';
 
 	export let section: SectionTreeResponse[0];
 
-	let isExpanded = false;
+	let isExpanded = $expandedSections.has(section.id);
+
+	function toggleExpanded() {
+		if ($expandedSections.has(section.id)) {
+			$expandedSections.delete(section.id);
+			isExpanded = false;
+		} else {
+			$expandedSections.add(section.id);
+			isExpanded = true;
+		}
+	}
 </script>
 
 {#if section.children.length > 0}
 	<div class="flex items-center gap-2">
-		<button
-			aria-label="toggle folder expansion"
-			on:click={() => {
-				isExpanded = !isExpanded;
-			}}
-		>
+		<button aria-label="toggle folder expansion" on:click={toggleExpanded}>
 			<IconChevronRight
 				size={16}
 				class="flex-shrink-0 transition-transform {isExpanded ? 'rotate-45' : ''}"

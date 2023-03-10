@@ -37,7 +37,7 @@
 		</div>
 		<ul class="flex gap-6">
 			<li><a href="/projects">Projects</a></li>
-			<li><a href="/">Testruns</a></li>
+			<li><a href="/testruns">Testruns</a></li>
 			<li><a href="/testcases">Testcases</a></li>
 		</ul>
 	</nav>
