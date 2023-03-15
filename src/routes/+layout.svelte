@@ -1,10 +1,10 @@
 <script lang="ts">
-	import '../app.css';
+	import "../app.css";
 
-	import type { LayoutData } from './$types';
-	import { fly } from 'svelte/transition';
-	import { currentProject } from '$lib/stores';
-	import { IconFolders } from '@tabler/icons-svelte';
+	import type { LayoutData } from "./$types";
+	import { fly } from "svelte/transition";
+	import { currentProject } from "$lib/stores";
+	import { IconFolders } from "@tabler/icons-svelte";
 
 	export let data: LayoutData;
 </script>
@@ -25,7 +25,7 @@
 						{$currentProject.name}
 					</a>
 				{/key}
-			{:else if data.currentPath !== '/projects'}
+			{:else if data.currentPath !== "/projects"}
 				<a
 					in:fly={{ y: -30, duration: 200, delay: 150 }}
 					out:fly={{ y: -30, duration: 150 }}

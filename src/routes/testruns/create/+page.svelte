@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { checkedTestcases } from '$lib/stores';
-	import type { TestCasesResponse } from '$lib/types';
-	import { IconX } from '@tabler/icons-svelte';
-	import { onMount } from 'svelte/internal';
-	import { fade, fly } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
+	import { checkedTestcases } from "$lib/stores";
+	import type { TestCasesResponse } from "$lib/types";
+	import { IconX } from "@tabler/icons-svelte";
+	import { onMount } from "svelte/internal";
+	import { fade, fly } from "svelte/transition";
+	import { flip } from "svelte/animate";
 
 	let testcases: TestCasesResponse;
 	let loading = false;
 
 	onMount(async () => {
 		loading = true;
-		testcases = await fetch('/api/testcases/by_id', {
-			method: 'POST',
-			body: JSON.stringify(Array.from($checkedTestcases))
+		testcases = await fetch("/api/testcases/by_id", {
+			method: "POST",
+			body: JSON.stringify(Array.from($checkedTestcases)),
 		}).then((response) => response.json());
 		loading = false;
 	});

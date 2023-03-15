@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { SectionTreeResponse } from '$lib/types';
+	import type { SectionTreeResponse } from "$lib/types";
 
-	import { IconChevronRight } from '@tabler/icons-svelte';
-	import SectionName from './SectionName.svelte';
-	import { slide } from 'svelte/transition';
-	import { expandedSections } from '$lib/stores';
+	import { IconChevronRight } from "@tabler/icons-svelte";
+	import SectionName from "./SectionName.svelte";
+	import { slide } from "svelte/transition";
+	import { expandedSections } from "$lib/stores";
 
 	export let section: SectionTreeResponse[0];
 
@@ -24,10 +24,7 @@
 {#if section.children.length > 0}
 	<div class="flex items-center gap-2">
 		<button aria-label="toggle folder expansion" on:click={toggleExpanded}>
-			<IconChevronRight
-				size={16}
-				class="flex-shrink-0 transition-transform {isExpanded ? 'rotate-45' : ''}"
-			/>
+			<IconChevronRight size={16} class="flex-shrink-0 transition-transform {isExpanded ? 'rotate-45' : ''}" />
 		</button>
 		<SectionName {section} on:sectionClick />
 	</div>

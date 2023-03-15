@@ -1,5 +1,5 @@
-import { writable, type Writable } from 'svelte/store';
-import type { ProjectsResponse, SectionTreeResponse, TestCasesResponse } from './types';
+import { writable, type Writable } from "svelte/store";
+import type { ProjectsResponse, SectionTreeResponse, TestCasesResponse } from "./types";
 
 // export const testcases: Writable<TestCasesResponse> = writable();
 export const currentProject: Writable<ProjectsResponse[0] | Record<string, never>> = writable();

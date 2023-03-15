@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { TestCasesResponse } from '$lib/types';
-	import { fade } from 'svelte/transition';
-	import type { PageServerData } from './$types';
-	import LoadingSpinner from './LoadingSpinner.svelte';
-	import { goto } from '$app/navigation';
+	import type { TestCasesResponse } from "$lib/types";
+	import { fade } from "svelte/transition";
+	import type { PageServerData } from "./$types";
+	import LoadingSpinner from "./LoadingSpinner.svelte";
+	import { goto } from "$app/navigation";
 
-	import SectionsTree from './SectionsTree.svelte';
-	import TestcasesTable from './TestcasesTable.svelte';
-	import { currentSection, checkedTestcases, sections, testcases } from '$lib/stores';
-	import { IconSquareRoundedPlusFilled } from '@tabler/icons-svelte';
+	import SectionsTree from "./SectionsTree.svelte";
+	import TestcasesTable from "./TestcasesTable.svelte";
+	import { currentSection, checkedTestcases, sections, testcases } from "$lib/stores";
+	import { IconSquareRoundedPlusFilled } from "@tabler/icons-svelte";
 
 	export let data: PageServerData;
 
@@ -19,9 +19,9 @@
 	$: numSelectedTestcases = $checkedTestcases.size;
 
 	async function fetchTestcases() {
-		const testcaseItems: TestCasesResponse['items'] = await fetch(
-			`api/section?id=${$currentSection}`
-		).then((res) => res.json());
+		const testcaseItems: TestCasesResponse["items"] = await fetch(`api/section?id=${$currentSection}`).then((res) =>
+			res.json()
+		);
 		$testcases = { items: testcaseItems, count: testcaseItems?.length || 0 };
 	}
 
@@ -59,7 +59,7 @@
 		</div>
 		<button
 			class="flex items-center gap-2 rounded bg-blue-500 py-1 px-2 text-sm text-blue-50 transition-colors hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-300"
-			on:click={() => goto('/testruns/create')}
+			on:click={() => goto("/testruns/create")}
 			disabled={numSelectedTestcases === 0}
 		>
 			Create Testrun

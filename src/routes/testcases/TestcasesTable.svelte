@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { TestCasesResponse } from '$lib/types';
-	import { fade } from 'svelte/transition';
+	import type { TestCasesResponse } from "$lib/types";
+	import { fade } from "svelte/transition";
 
-	import { checkedTestcases } from '$lib/stores';
+	import { checkedTestcases } from "$lib/stores";
 
 	export let testcases: TestCasesResponse;
 

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { SectionTreeResponse } from '$lib/types';
-	import SectionItem from './SectionItem.svelte';
+	import type { SectionTreeResponse } from "$lib/types";
+	import SectionItem from "./SectionItem.svelte";
 	export let sections: SectionTreeResponse;
 </script>
 

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { SectionTreeResponse } from '$lib/types';
-	import { IconFolder } from '@tabler/icons-svelte';
-	import { currentSection } from '$lib/stores';
+	import type { SectionTreeResponse } from "$lib/types";
+	import { IconFolder } from "@tabler/icons-svelte";
+	import { currentSection } from "$lib/stores";
 
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher } from "svelte";
 
 	const dispatch = createEventDispatcher();
 
@@ -12,7 +12,7 @@
 	$: isActive = $currentSection === section.id;
 
 	function sectionClicked(id: number) {
-		dispatch('sectionClick', id);
+		dispatch("sectionClick", id);
 	}
 </script>
 
@@ -22,10 +22,7 @@
 		: ''}"
 >
 	<IconFolder size={16} class="flex-shrink-0 fill-yellow-400 text-yellow-400" />
-	<button
-		class="h-full w-full truncate rounded text-left"
-		on:click={() => sectionClicked(section.id)}
-	>
+	<button class="h-full w-full truncate rounded text-left" on:click={() => sectionClicked(section.id)}>
 		{section.name}
 	</button>
 </div>

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { currentProject } from '$lib/stores';
-	import type { PageData } from './$types';
+	import { currentProject } from "$lib/stores";
+	import type { PageData } from "./$types";
 
 	export let data: PageData;
 	const projects = data.projects;
