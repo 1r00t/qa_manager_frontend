@@ -43,7 +43,7 @@
 	</nav>
 </header>
 
-<main class="container mx-auto antialiased">
+<main class="container mx-auto text-slate-600 antialiased">
 	{#key data.currentPath}
 		<div in:fly={{ y: -30, duration: 200, delay: 150 }} out:fly={{ y: -30, duration: 150 }}>
 			<slot />

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { checkedTestcases } from "$lib/stores";
-	import type { TestCasesResponse } from "$lib/types";
+	import type { TestCase, TestCasesResponse } from "$lib/types";
 	import { IconX } from "@tabler/icons-svelte";
 	import { onMount } from "svelte/internal";
 	import { fade, fly } from "svelte/transition";
@@ -13,15 +13,15 @@
 		loading = true;
 		testcases = await fetch("/api/testcases/by_id", {
 			method: "POST",
-			body: JSON.stringify(Array.from($checkedTestcases)),
+			body: JSON.stringify(Array.from(Object.values($checkedTestcases).flat())),
 		}).then((response) => response.json());
 		loading = false;
 	});
 
-	function removeTestcase(id: number) {
-		testcases.items = testcases.items?.filter((item) => item.id !== id);
+	function removeTestcase(testcase: TestCase) {
+		testcases.items = testcases.items?.filter((item) => item.id !== testcase.id);
 		testcases.count -= 1;
-		$checkedTestcases.delete(id);
+		$checkedTestcases[testcase.section.id].splice($checkedTestcases[testcase.section.id].indexOf(testcase.id), 1);
 	}
 </script>
 
@@ -63,7 +63,7 @@
 							<td class="flex items-center justify-end py-2 pr-2">
 								<button
 									class="flex items-center text-gray-400 opacity-0 hover:text-red-500 group-hover:opacity-100"
-									on:click={() => removeTestcase(item.id)}
+									on:click={() => removeTestcase(item)}
 								>
 									<IconX />
 								</button>

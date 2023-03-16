@@ -8,7 +8,7 @@ export const GET: RequestHandler = async ({ url, fetch }) => {
 
 	if (!section_id) throw error(400, "Please provide a section ID!");
 
-	const testcases: TestCasesResponse = await fetch(`${BACKEND_URL}/testcases/section/${section_id}`).then((res) =>
+	const testcases: TestCasesResponse = await fetch(`${BACKEND_URL}/testcases/section/${section_id}/`).then((res) =>
 		res.json()
 	);
 

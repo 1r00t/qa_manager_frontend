@@ -4,9 +4,21 @@
 	import { IconChevronRight } from "@tabler/icons-svelte";
 	import SectionName from "./SectionName.svelte";
 	import { slide } from "svelte/transition";
-	import { expandedSections } from "$lib/stores";
+	import { expandedSections, checkedTestcases } from "$lib/stores";
 
 	export let section: SectionTreeResponse[0];
+
+	let numSelectedTestcases = 0;
+
+	function num(s: SectionTreeResponse[0]): number {
+		s.children.forEach((child) => num(child));
+		return (numSelectedTestcases += $checkedTestcases[s.id]?.length || 0);
+	}
+	$: {
+		$checkedTestcases;
+		numSelectedTestcases = 0;
+		numSelectedTestcases = num(section);
+	}
 
 	let isExpanded = $expandedSections.has(section.id);
 
@@ -22,11 +34,14 @@
 </script>
 
 {#if section.children.length > 0}
-	<div class="flex items-center gap-2">
+	<div class="flex items-center">
 		<button aria-label="toggle folder expansion" on:click={toggleExpanded}>
-			<IconChevronRight size={16} class="flex-shrink-0 transition-transform {isExpanded ? 'rotate-45' : ''}" />
+			<IconChevronRight
+				size={16}
+				class="flex-shrink-0 transition-transform hover:text-blue-600 {isExpanded ? 'rotate-90' : ''}"
+			/>
 		</button>
-		<SectionName {section} on:sectionClick />
+		<SectionName {section} on:sectionClick {numSelectedTestcases} />
 	</div>
 	{#if isExpanded}
 		<ul class="ml-4" transition:slide={{ duration: 200 }}>
@@ -38,7 +53,7 @@
 		</ul>
 	{/if}
 {:else}
-	<div class="ml-6 flex items-center gap-2">
-		<SectionName {section} on:sectionClick />
+	<div class="ml-4">
+		<SectionName {section} on:sectionClick {numSelectedTestcases} />
 	</div>
 {/if}

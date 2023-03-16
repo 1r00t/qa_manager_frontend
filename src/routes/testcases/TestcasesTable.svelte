@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TestCasesResponse } from "$lib/types";
+	import type { TestCasesResponse, TestCase } from "$lib/types";
 	import { fade } from "svelte/transition";
 
 	import { checkedTestcases } from "$lib/stores";
@@ -7,33 +7,52 @@
 	export let testcases: TestCasesResponse;
 
 	$: filtered = testcases?.items?.map((testcase) => testcase);
-	$: selectAll = filtered?.every((t) => $checkedTestcases.has(t.id));
-	$: selectedAnyNotAll = filtered?.some((t) => $checkedTestcases.has(t.id)) && !selectAll;
+	$: selectAll = filtered?.every((t) => Object.values($checkedTestcases).flat().includes(t.id));
+	$: selectedAnyNotAll = filtered?.some((t) => Object.values($checkedTestcases).flat().includes(t.id)) && !selectAll;
 
 	function toggleSelectAll() {
 		selectAll = !selectAll;
-		if (filtered && filtered.length) {
-			const currentIds = filtered.map((item) => item.id);
-			if (selectAll) {
-				currentIds.forEach($checkedTestcases.add, $checkedTestcases);
-				$checkedTestcases = $checkedTestcases;
-			} else {
-				$checkedTestcases.forEach((id) => {
-					if (currentIds.includes(id)) $checkedTestcases.delete(id);
-				});
-				$checkedTestcases = $checkedTestcases;
-			}
+
+		if (!filtered || filtered.length === 0) {
+			return;
 		}
+
+		filtered.forEach((testcase) => {
+			const sectionId = testcase.section.id;
+			const testcaseId = testcase.id;
+
+			if (selectAll) {
+				// If selectAll is true, add all testcases to selectedTestcaseIds
+				if (sectionId in $checkedTestcases) {
+					if (!$checkedTestcases[sectionId].includes(testcaseId)) {
+						$checkedTestcases[sectionId].push(testcaseId);
+					}
+				} else {
+					$checkedTestcases[sectionId] = [testcaseId];
+				}
+			} else {
+				// If selectAll is false, remove all testcases from selectedTestcaseIds
+				delete $checkedTestcases[sectionId];
+			}
+		});
+		$checkedTestcases = $checkedTestcases;
 	}
 
-	function toggleChecked(itemId: number) {
-		if ($checkedTestcases.has(itemId)) {
-			$checkedTestcases.delete(itemId);
-			$checkedTestcases = $checkedTestcases;
+	function toggleChecked(testcase: TestCase) {
+		const sectionId = testcase.section.id;
+		const currentTestcaseIds = $checkedTestcases[sectionId] || [];
+
+		if (currentTestcaseIds.includes(testcase.id)) {
+			const updatedTestcaseIds = currentTestcaseIds.filter((id) => id !== testcase.id);
+			if (updatedTestcaseIds.length === 0) {
+				delete $checkedTestcases[sectionId];
+			} else {
+				$checkedTestcases[sectionId] = updatedTestcaseIds;
+			}
 		} else {
-			$checkedTestcases.add(itemId);
-			$checkedTestcases = $checkedTestcases;
+			$checkedTestcases[sectionId] = [...currentTestcaseIds, testcase.id];
 		}
+		$checkedTestcases = $checkedTestcases;
 	}
 </script>
 
@@ -49,7 +68,7 @@
 							on:change={toggleSelectAll}
 							checked={selectAll}
 							indeterminate={selectedAnyNotAll}
-							class="cursor-pointer text-blue-400 checked:ring-blue-400 focus:ring-blue-400"
+							class="cursor-pointer rounded-sm text-blue-400 transition-colors duration-300 checked:ring-blue-400 focus:ring-blue-400"
 						/>
 					</th>
 					<th class="w-16 py-2">ID</th>
@@ -64,9 +83,9 @@
 								type="checkbox"
 								name="select-testcase"
 								value={item.id}
-								checked={$checkedTestcases.has(item.id)}
-								on:change={() => toggleChecked(item.id)}
-								class="cursor-pointer text-blue-400 checked:ring-blue-400 focus:ring-blue-400"
+								checked={$checkedTestcases[item.section.id]?.includes(item.id)}
+								on:change={() => toggleChecked(item)}
+								class="cursor-pointer rounded-sm text-blue-400 transition-colors duration-300 checked:ring-blue-400 focus:ring-blue-400"
 							/></td
 						>
 						<td class="py-2">{item.case_id}</td>
