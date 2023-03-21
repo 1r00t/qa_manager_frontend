@@ -57,7 +57,7 @@
 </script>
 
 {#if filtered?.length}
-	<div class="h-[65vh] flex-1 overflow-y-auto overscroll-contain pl-4" in:fade>
+	<div class="h-[70vh] flex-1 overflow-y-auto overscroll-contain pl-4" in:fade>
 		<table class="w-full table-fixed">
 			<thead class="">
 				<tr class="text-left">
@@ -96,7 +96,7 @@
 		</table>
 	</div>
 {:else}
-	<div class="w-full pl-4 text-center">
-		<h3 class="text-lg text-slate-500">Please select a section from the left</h3>
+	<div class="flex h-[70vh] w-full items-center justify-center pl-4">
+		<h3 class="text-lg text-slate-500">Please select a section from the left or use the search to display testcases</h3>
 	</div>
 {/if}

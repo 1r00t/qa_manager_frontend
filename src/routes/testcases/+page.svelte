@@ -52,7 +52,7 @@
 </svelte:head>
 
 <section class="mt-16">
-	<h3 class="text-2xl font-semibold">All testcases</h3>
+	<h3 class="text-2xl font-semibold">List and select testcases for a new testrun</h3>
 </section>
 
 <section class="mt-16 flex h-10 w-full items-center">
@@ -63,7 +63,7 @@
 				name="search"
 				bind:value={searchInput}
 				on:input={debounce(searchTestcases, 500)}
-				class="border-1 absolute w-full rounded-md border-slate-300 bg-slate-50 pl-10 text-slate-600 transition-colors placeholder:text-slate-300 focus:border-slate-400 focus:bg-slate-100 focus:ring-0"
+				class="border-1 absolute w-full rounded-md border-slate-300 pl-10 text-slate-600 transition-colors placeholder:text-slate-300 focus:border-slate-400 focus:bg-slate-50 focus:ring-0"
 				placeholder="search"
 			/>
 			<div class="absolute left-2 flex items-center text-slate-400">
@@ -104,7 +104,7 @@
 	</div>
 </section>
 
-<section class="mt-6">
+<section class="mt-6 border">
 	<div class="flex">
 		<SectionsTree sections={$sections} on:sectionClick={sectionClick} />
 		{#if loadingTestcases}

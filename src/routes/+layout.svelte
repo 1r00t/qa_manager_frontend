@@ -10,7 +10,7 @@
 </script>
 
 <header class="text-xl">
-	<nav class="container mx-auto flex h-28 items-center justify-between">
+	<nav class="container mx-auto flex h-28 items-center justify-between border-b border-slate-300">
 		<div class="flex items-center gap-16">
 			<strong><a href="/">QA</a></strong>
 			{#if $currentProject}
@@ -35,8 +35,14 @@
 				>
 			{/if}
 		</div>
-		<ul class="flex gap-6">
-			<li><a href="/projects">Projects</a></li>
+		<ul class="mt-px flex h-full items-end gap-10">
+			<li>
+				<a
+					href="/projects"
+					class="flex h-16 items-center rounded-t-lg border border-slate-300 border-b-white bg-white px-6 shadow-inner"
+					>Projects</a
+				>
+			</li>
 			<li><a href="/testruns">Testruns</a></li>
 			<li><a href="/testcases">Testcases</a></li>
 		</ul>
