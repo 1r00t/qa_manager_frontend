@@ -4,7 +4,7 @@
 	export let sections: SectionTreeResponse;
 </script>
 
-<aside class="h-[70vh] max-w-xs flex-none overflow-y-auto overscroll-contain border-r py-4 pr-4">
+<aside class="h-[70vh] max-w-xs flex-none overflow-y-auto overscroll-contain border-r border-slate-300 py-4 pr-4">
 	{#if sections}
 		<ul>
 			{#each sections as section}

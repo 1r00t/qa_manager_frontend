@@ -56,6 +56,7 @@
 </section>
 
 <section class="mt-16 flex h-10 w-full items-center">
+	<!-- search and select row -->
 	<div class="flex w-full items-center justify-between gap-6">
 		<div class="relative flex h-16 w-72 items-center">
 			<input
@@ -63,7 +64,7 @@
 				name="search"
 				bind:value={searchInput}
 				on:input={debounce(searchTestcases, 500)}
-				class="border-1 absolute w-full rounded-md border-slate-300 pl-10 text-slate-600 transition-colors placeholder:text-slate-300 focus:border-slate-400 focus:bg-slate-50 focus:ring-0"
+				class="border-1 absolute w-80 rounded-md border-slate-300 pl-8 text-slate-600 transition-colors placeholder:text-slate-300 focus:border-slate-400 focus:bg-slate-50 focus:ring-0"
 				placeholder="search"
 			/>
 			<div class="absolute left-2 flex items-center text-slate-400">
@@ -104,7 +105,8 @@
 	</div>
 </section>
 
-<section class="mt-6 border">
+<section class="mt-6 rounded-md border border-slate-300">
+	<!-- main row -->
 	<div class="flex">
 		<SectionsTree sections={$sections} on:sectionClick={sectionClick} />
 		{#if loadingTestcases}

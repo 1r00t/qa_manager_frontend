@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SectionTreeResponse } from "$lib/types";
-	import { IconFolder } from "@tabler/icons-svelte";
+	import { IconFolder, IconFolders } from "@tabler/icons-svelte";
 	import { currentSection } from "$lib/stores";
 
 	import { createEventDispatcher } from "svelte";
@@ -19,11 +19,12 @@
 </script>
 
 <div
-	class="z-50 flex h-full w-full items-center gap-2 truncate px-1 hover:bg-blue-50 {isActive
+	class="z-50 flex h-full w-full items-center gap-1 truncate rounded-sm px-0 hover:bg-blue-50 {isActive
 		? 'bg-blue-100 hover:bg-blue-100'
 		: ''}"
 >
 	<IconFolder size={16} class="flex-shrink-0 fill-yellow-400 text-yellow-400" />
+
 	<button class="relative h-full w-full truncate rounded text-left" on:click={() => sectionClicked(section.id)}>
 		<span class="flex truncate">{section.name}</span>
 		{#if numSelectedTestcases}
