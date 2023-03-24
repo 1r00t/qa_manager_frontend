@@ -1,50 +1,47 @@
 <script lang="ts">
 	import "../app.css";
+	import "@fontsource/quicksand/300.css";
+	import "@fontsource/quicksand/400.css";
+	import "@fontsource/quicksand/500.css";
+	import "@fontsource/quicksand/600.css";
+	import "@fontsource/quicksand/700.css";
 
 	import type { LayoutData } from "./$types";
 	import { fly } from "svelte/transition";
-	import { currentProject } from "$lib/stores";
-	import { IconFolders } from "@tabler/icons-svelte";
+	import ProjectSelector from "./ProjectSelector.svelte";
 
 	export let data: LayoutData;
+
+	const { projects } = data;
+
+	let logo = Math.random() > 0.5 ? "QAwesome" : "QAwful";
 </script>
 
 <header class="text-xl">
-	<nav class="container mx-auto flex h-28 items-center justify-between border-b border-slate-300">
+	<nav class="container mx-auto flex h-28 items-center justify-between">
 		<div class="flex items-center gap-16">
-			<strong><a href="/">QA</a></strong>
-			{#if $currentProject}
-				{#key $currentProject.id}
-					<a
-						href="projects/{$currentProject.slug}"
-						in:fly={{ y: -30, duration: 200, delay: 150 }}
-						out:fly={{ y: -30, duration: 150 }}
-						class="flex items-center gap-1 rounded border border-dashed border-blue-500 px-4 py-2 text-sm font-thin text-blue-600"
-					>
-						<IconFolders stroke={1} size={16} />
-						{$currentProject.name}
-					</a>
-				{/key}
-			{:else if data.currentPath !== "/projects"}
-				<a
-					in:fly={{ y: -30, duration: 200, delay: 150 }}
-					out:fly={{ y: -30, duration: 150 }}
-					href="/projects"
-					class="rounded bg-blue-500 py-2 px-4 text-sm text-blue-50 transition-colors hover:bg-blue-600"
-					>Select a Project!</a
-				>
-			{/if}
+			<strong><a href="/">{logo}</a></strong>
 		</div>
-		<ul class="mt-px flex h-full items-end gap-10">
-			<li>
+		<ProjectSelector {projects} />
+		<ul class="flex h-full items-center font-bold">
+			<li class="h-full">
 				<a
-					href="/projects"
-					class="flex h-16 items-center rounded-t-lg border border-slate-300 border-b-white bg-white px-6 shadow-inner"
-					>Projects</a
+					class="flex h-full items-center px-10 {data.currentPath.startsWith('/projects') ? 'text-blue-500' : ''}"
+					href="/projects">Projects</a
 				>
 			</li>
-			<li><a href="/testruns">Testruns</a></li>
-			<li><a href="/testcases">Testcases</a></li>
+			<li>
+				<a
+					class="flex h-full items-center px-10 {data.currentPath.startsWith('/testruns') ? 'text-blue-500' : ''}"
+					href="/testruns">Testruns</a
+				>
+			</li>
+			<li>
+				<a
+					class="flex h-full items-center px-10 {data.currentPath.startsWith('/testcases') ? 'text-blue-500' : ''}"
+					href="/testcases">Testcases</a
+				>
+			</li>
 		</ul>
 	</nav>
 </header>

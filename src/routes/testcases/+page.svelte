@@ -52,19 +52,19 @@
 </svelte:head>
 
 <section class="mt-16">
-	<h3 class="text-2xl font-semibold">List and select testcases for a new testrun</h3>
+	<h3 class="text-4xl font-semibold">Select testcases for a testrun</h3>
 </section>
 
 <section class="mt-16 flex h-10 w-full items-center">
 	<!-- search and select row -->
 	<div class="flex w-full items-center justify-between gap-6">
-		<div class="relative flex h-16 w-72 items-center">
+		<div class="relative flex h-16 w-80 items-center">
 			<input
 				type="search"
 				name="search"
 				bind:value={searchInput}
 				on:input={debounce(searchTestcases, 500)}
-				class="border-1 absolute w-80 rounded-md border-slate-300 pl-8 text-slate-600 transition-colors placeholder:text-slate-300 focus:border-slate-400 focus:bg-slate-50 focus:ring-0"
+				class="border-1 absolute w-full rounded-md border-slate-300 pl-8 text-slate-600 transition-colors placeholder:text-slate-300 focus:border-slate-400 focus:bg-slate-50 focus:ring-0"
 				placeholder="search"
 			/>
 			<div class="absolute left-2 flex items-center text-slate-400">
@@ -87,7 +87,7 @@
 				<a
 					href="/testruns/create"
 					class="flex w-full items-center gap-1 rounded-full py-2 pr-2 pl-3 transition-colors hover:text-blue-200"
-					><strong>{numSelectedTestcases}</strong><span class="mb-0.5">selected</span></a
+					><strong>{numSelectedTestcases}</strong>selected</a
 				>
 				<button class="transition-colors hover:text-red-400" on:click={() => ($checkedTestcases = {})}
 					><IconX size={16} /></button

@@ -6,5 +6,6 @@
 	html {
 		scrollbar-gutter: stable both-edges;
 		overflow: scroll;
+		font-family: "Quicksand", font-sans;
 	}
 }
