@@ -34,17 +34,17 @@
 </script>
 
 {#if section.children.length > 0}
-	<div class="flex items-center pl-1">
+	<div class="flex pl-1">
 		<button aria-label="toggle folder expansion" on:click={toggleExpanded}>
 			<IconChevronRight
 				size={16}
-				class="flex-shrink-0 transition-transform hover:text-blue-600 {isExpanded ? 'rotate-90' : ''}"
+				class="flex-shrink-0 transition-transform hover:text-blue-400 {isExpanded ? 'rotate-90' : ''}"
 			/>
 		</button>
 		<SectionName {section} on:sectionClick {numSelectedTestcases} />
 	</div>
 	{#if isExpanded}
-		<ul class="ml-4 pl-1" transition:slide={{ duration: 200 }}>
+		<ul class="pl-4" transition:slide={{ duration: 200 }}>
 			{#each section.children as child (child.id)}
 				<li>
 					<svelte:self section={child} on:sectionClick />
@@ -53,7 +53,7 @@
 		</ul>
 	{/if}
 {:else}
-	<div class="ml-4 pl-1">
+	<div class="pl-5">
 		<SectionName {section} on:sectionClick {numSelectedTestcases} />
 	</div>
 {/if}
