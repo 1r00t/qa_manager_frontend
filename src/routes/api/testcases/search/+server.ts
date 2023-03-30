@@ -6,7 +6,7 @@ import type { RequestHandler } from "./$types";
 export const POST: RequestHandler = async ({ url, fetch }) => {
 	const query = url.searchParams.get("query") ?? "";
 
-	if (query.length < 2) throw error(400, "Please enter a valid query with at least 2 characters");
+	if (query.length < 1) throw error(400, "Please enter a valid query with at least 1 characters");
 
 	const testcases: TestCasesResponse["items"] = await fetch(`${BACKEND_URL}/testcases/search/?query=${query}`, {
 		method: "POST",

@@ -40,7 +40,7 @@
 	let searchInput = "";
 
 	async function searchTestcases() {
-		if (searchInput.length < 2) return;
+		if (searchInput.length < 1) return;
 		const testcaseItems: TestCasesResponse["items"] = await fetch(`api/testcases/search?query=${searchInput}`, {
 			method: "POST",
 		}).then((res) => res.json());
