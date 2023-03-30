@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { SectionTreeResponse } from "$lib/types";
-	import { IconFolder, IconFolders } from "@tabler/icons-svelte";
+	import IconFolder from "$lib/icons/IconFolder.svelte";
 	import { currentSection } from "$lib/stores";
 
 	import { createEventDispatcher } from "svelte";

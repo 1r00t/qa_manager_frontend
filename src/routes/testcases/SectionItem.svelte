@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SectionTreeResponse } from "$lib/types";
 
-	import { IconChevronRight } from "@tabler/icons-svelte";
+	import IconChevronRight from "$lib/icons/IconChevronRight.svelte";
 	import SectionName from "./SectionName.svelte";
 	import { slide } from "svelte/transition";
 	import { expandedSections, checkedTestcases } from "$lib/stores";

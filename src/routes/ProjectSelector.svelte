@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { currentProject } from "$lib/stores";
 	import type { ProjectsResponse } from "$lib/types";
-	import { IconChevronDown } from "@tabler/icons-svelte";
+	import IconChevronDown from "$lib/icons/IconChevronDown.svelte";
 	import { slide } from "svelte/transition";
 	import { clickOutsideAction } from "$lib/utils";
 

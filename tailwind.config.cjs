@@ -2,7 +2,12 @@
 module.exports = {
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				Merriweather: ["Merriweather", "serif"],
+				Quicksand: ["Quicksand", "sans-serif"],
+			},
+		},
 	},
 	plugins: [
 		require("@tailwindcss/typography"),

@@ -9,7 +9,9 @@
 	import SectionsTree from "./SectionsTree.svelte";
 	import TestcasesTable from "./TestcasesTable.svelte";
 	import { currentSection, checkedTestcases, sections, testcases } from "$lib/stores";
-	import { IconSquareRoundedPlusFilled, IconX, IconSearch } from "@tabler/icons-svelte";
+	import IconSquareRoundedPlusFilled from "$lib/icons/IconSquareRoundedPlusFilled.svelte";
+	import IconX from "$lib/icons/IconX.svelte";
+	import IconSearch from "$lib/icons/IconSearch.svelte";
 
 	export let data: PageServerData;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { checkedTestcases } from "$lib/stores";
 	import type { TestCase, TestCasesResponse } from "$lib/types";
-	import { IconX } from "@tabler/icons-svelte";
+	import IconX from "$lib/icons/IconX.svelte";
 	import { onMount } from "svelte/internal";
 	import { fade, fly } from "svelte/transition";
 	import { flip } from "svelte/animate";
@@ -31,23 +31,25 @@
 </svelte:head>
 
 <section class="mt-16">
-	<h3 class="text-2xl font-semibold">Create new Testrun</h3>
+	<h3 class="text-4xl font-semibold">Create new Testrun</h3>
 </section>
 
 <section>
 	<h4 class="mt-16 text-xl">Selected testcases</h4>
 </section>
 
-<section class="mt-16 flex w-full items-center">
+<section
+	class="mt-16 flex h-[65vh] w-full items-start overflow-y-auto overscroll-contain rounded-md border border-slate-300"
+>
 	{#if testcases?.items?.length}
-		<div class="pl-4" in:fade>
+		<div in:fade>
 			<table class="w-full table-fixed">
-				<thead class="">
+				<thead class="sticky top-0 bg-white">
 					<tr class="text-left">
-						<th class="w-16 py-2">ID</th>
+						<th class="w-16 py-2 pl-4">ID</th>
 						<th class="mr-10">Title</th>
 						<th class="w-60 py-2">Section</th>
-						<th class="w-16" />
+						<th class="w-16 pr-4" />
 					</tr>
 				</thead>
 				<tbody>
@@ -57,10 +59,10 @@
 							transition:fly|local={{ x: -50 }}
 							animate:flip={{ delay: 150 }}
 						>
-							<td class="py-2">{item.case_id}</td>
+							<td class="py-2 pl-4">{item.case_id}</td>
 							<td class="truncate py-2 pr-2">{item.title}</td>
 							<td class="truncate py-2">{item.section.full_section_hierachy}</td>
-							<td class="flex items-center justify-end py-2 pr-2">
+							<td class="flex items-center justify-end py-2 pr-4">
 								<button
 									class="flex items-center text-gray-400 opacity-0 hover:text-red-500 group-hover:opacity-100"
 									on:click={() => removeTestcase(item)}

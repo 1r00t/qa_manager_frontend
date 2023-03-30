@@ -59,7 +59,7 @@
 {#if filtered?.length}
 	<div class="h-[70vh] flex-1 overflow-y-auto overscroll-contain pl-4" in:fade>
 		<table class="w-full table-fixed">
-			<thead class="">
+			<thead class="sticky top-0 bg-white">
 				<tr class="text-left">
 					<th class="w-8 py-2">
 						<input
@@ -78,7 +78,7 @@
 			<tbody>
 				{#each filtered as item (item.id)}
 					<tr class="cursor-default hover:bg-gray-50">
-						<td class="py-2"
+						<td class=""
 							><input
 								type="checkbox"
 								name="select-testcase"

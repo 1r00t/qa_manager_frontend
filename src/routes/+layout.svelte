@@ -5,6 +5,10 @@
 	import "@fontsource/quicksand/500.css";
 	import "@fontsource/quicksand/600.css";
 	import "@fontsource/quicksand/700.css";
+	import "@fontsource/merriweather/300.css";
+	import "@fontsource/merriweather/400.css";
+	import "@fontsource/merriweather/700.css";
+	import "@fontsource/merriweather/900.css";
 
 	import type { LayoutData } from "./$types";
 	import { fly } from "svelte/transition";
@@ -19,11 +23,11 @@
 
 <header class="text-xl">
 	<nav class="container mx-auto flex h-28 items-center justify-between">
-		<div class="flex items-center gap-16">
+		<div class="flex items-center gap-16 font-Merriweather">
 			<strong><a href="/">{logo}</a></strong>
 		</div>
 		<ProjectSelector {projects} />
-		<ul class="flex h-full items-center font-bold">
+		<ul class="flex h-full items-center font-Merriweather font-bold">
 			<li class="h-full">
 				<a
 					class="flex h-full items-center px-10 {data.currentPath.startsWith('/projects') ? 'text-blue-500' : ''}"
